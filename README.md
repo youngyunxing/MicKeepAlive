@@ -10,26 +10,15 @@ macOS 菜单栏蓝牙麦克风保活工具。持续读取默认输入设备的�
 - 支持一键开关开机自启
 - 提供 `mkctl` 命令行工具
 
-## 安装位置约定
+## 安装建议
 
-**必须固定安装到：**
+建议安装到 `/Applications/MicKeepAlive.app`。
 
-```
-/Applications/MicKeepAlive.app
-```
-
-原因：macOS 的麦克风权限（TCC）是按应用路径 + Bundle ID 绑定的。如果同一 App 从不同路径启动，系统会把它视为不同应用，导致每次都需要重新授权麦克风。
-
-因此：
-
-- 构建产物必须复制到 `/Applications/MicKeepAlive.app`
-- 启动/重启时必须使用 `open /Applications/MicKeepAlive.app`
-- 不要直接运行 `build/Release/MicKeepAlive.app` 或二进制文件
-- `mkctl` 已链接到 `/usr/local/bin/mkctl`，指向 `/Applications/MicKeepAlive.app/Contents/MacOS/mkctl`
+macOS 的麦克风权限与应用的安装路径相关。如果 App 从不同位置启动，系统可能要求重新授权麦克风。保持固定在 `/Applications` 可以避免重复弹窗。
 
 ## 麦克风权限
 
-首次启动会弹窗申请麦克风权限，点击「允许」后不再弹窗（只要安装路径保持 `/Applications/MicKeepAlive.app`）。
+首次启动会弹窗申请麦克风权限，点击「允许」后通常不再弹窗。
 
 如果误点拒绝：
 
