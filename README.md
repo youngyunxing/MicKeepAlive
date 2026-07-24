@@ -10,6 +10,49 @@ macOS 菜单栏蓝牙麦克风保活工具。持续读取默认输入设备的�
 - 支持一键开关开机自启
 - 提供 `mkctl` 命令行工具
 
+## 技术方案
+
+### 整体架构
+
+- **App 目标**：纯菜单栏应用（`LSUIElement`），无 Dock 图标、无主窗口。
+- **CLI 目标**：`mkctl`，与 App 共享音频工具代码，通过系统级通知控制 App。
+- **共享代码**：`AudioDeviceUtils`、`MicKeepAliveConstants`、`MicKeepAliveState` 同时被 App 和 CLI 编译引用。
+
+### 音频采集与电平显示
+
+- 使用 `AVAudioEngine.inputNode.installTap(...)` 持续读取系统默认输入设备的音频 buffer。
+- 每次 buffer 到来时计算 RMS，再换算为 dB 并映射到 0~1，最后选择对应的电平条字符：`🎤▁` ~ `🎤█`。
+- 音频数据仅用于计算电平，读取后立即释放，**不录音、不缓存、不上传**。
+
+### 麦克风选择
+
+- 枚举：通过 CoreAudio `AudioObjectGetPropertyData(kAudioHardwarePropertyDevices)` 获取所有音频设备，再按输入通道数过滤。
+- 过滤：排除系统自动创建的虚拟聚集设备（如 `CADefaultDeviceAggregate-*`），菜单中只保留真实输入麦克风。
+- 切换：通过 `AudioObjectSetPropertyData(kAudioHardwarePropertyDefaultInputDevice)` 把选中设备设为系统默认输入，`AVAudioEngine` 会跟随系统默认设备变化。
+
+### 跨进程控制（mkctl）
+
+- CLI 与 App 之间使用 `CFNotificationCenterGetDarwinNotifyCenter()` 发送/接收 Darwin notify 通知。
+- 命令名：
+  - `com.example.MicKeepAlive.command.start`
+  - `com.example.MicKeepAlive.command.stop`
+  - `com.example.MicKeepAlive.command.toggle`
+- App 在主线程中处理命令，避免音频引擎在非创建线程操作。
+
+### 状态共享
+
+- App 将当前保活状态写入 `~/Library/Application Support/MicKeepAlive/state.json`。
+- CLI 的 `mkctl status` 读取该文件，展示 `app_running` 与 `keeping_alive`。
+
+### 开机自启
+
+- 通过 `~/Library/LaunchAgents/com.example.MicKeepAlive.plist` + `launchctl load/unload` 实现。
+- plist 指向 `/Applications/MicKeepAlive.app/Contents/MacOS/MicKeepAlive`。
+
+### 单例运行
+
+- `main.swift` 启动前通过 `pgrep -x MicKeepAlive` 检查是否已有同名进程在运行；若有，则当前实例直接退出，防止菜单栏出现多个图标。
+
 ## 安装建议
 
 建议安装到 `/Applications/MicKeepAlive.app`。
