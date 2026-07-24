@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A65BC098-81B2-45DF-916A-F1364B1C18D8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */; };
+		978AB007-1ED3-4A94-BB8A-FA1E6C5D7177 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */; };
+		DFDF49B7-B376-4EE8-A461-6C8C730D3D0F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */; };
+		00A1871F-A0DC-4E60-BD1E-11D6095D6BE4 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */; };
+		0C0047F7-F806-4CD1-ACBE-48706C309651 /* LaunchAgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */; };
+		9D990FFA-01A8-4326-A5FB-331B85D787AE /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */; };
+		29ECDC5B-A225-4F5E-AE71-C42A91A52031 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */; };
+		EB41959A-78D1-46BE-B273-CC55E076DCBF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicKeepAlive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
+		6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAgentManager.swift; sourceTree = "<group>"; };
+		E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		BECC0A4C-3A73-4B99-B25B-D7BBFEA2BA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CC9441B-F201-41EC-AB38-55FCAA26D9ED /* MicKeepAlive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MicKeepAlive.entitlements; sourceTree = "<group>"; };
+		0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F131E4E-623A-4DE2-8EBA-0D337A1C1E75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29ECDC5B-A225-4F5E-AE71-C42A91A52031 /* AVFoundation.framework in Frameworks */,
+				EB41959A-78D1-46BE-B273-CC55E076DCBF /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FE7AE3DD-21BA-4BBA-ACAE-F5443BD51C66 /* MicKeepAlive */ = {
+			isa = PBXGroup;
+			children = (
+				8634A0C9-A419-42F1-8519-00DBDC578E38 /* MicKeepAlive */,
+				347D62F0-A519-4A90-AE3E-7399C66E6620 /* Frameworks */,
+				D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8634A0C9-A419-42F1-8519-00DBDC578E38 /* MicKeepAlive */ = {
+			isa = PBXGroup;
+			children = (
+				B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */,
+				688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */,
+				48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */,
+				B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */,
+				6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */,
+				E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */,
+				BECC0A4C-3A73-4B99-B25B-D7BBFEA2BA2D /* Info.plist */,
+				5CC9441B-F201-41EC-AB38-55FCAA26D9ED /* MicKeepAlive.entitlements */,
+			);
+			path = MicKeepAlive;
+			sourceTree = "<group>";
+		};
+		347D62F0-A519-4A90-AE3E-7399C66E6620 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */,
+				FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2F429B6-5F79-40CA-B32B-43AD04949AB3 /* MicKeepAlive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9AED217-7BDC-4605-8D80-1412223C5DE5 /* Build configuration list for PBXNativeTarget "MicKeepAlive" */;
+			buildPhases = (
+				4BFF2BC8-740F-4828-8154-B0E6C3310EF7 /* Sources */,
+				5F131E4E-623A-4DE2-8EBA-0D337A1C1E75 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MicKeepAlive;
+			productName = MicKeepAlive;
+			productReference = DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		56E40257-873F-4723-A9FB-4E35405D6F2C /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = B53DBAAB-6F08-4D3D-9FFB-46075059C492 /* Build configuration list for PBXProject "MicKeepAlive" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FE7AE3DD-21BA-4BBA-ACAE-F5443BD51C66;
+			productRefGroup = D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2F429B6-5F79-40CA-B32B-43AD04949AB3 /* MicKeepAlive */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4BFF2BC8-740F-4828-8154-B0E6C3310EF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65BC098-81B2-45DF-916A-F1364B1C18D8 /* main.swift in Sources */,
+				978AB007-1ED3-4A94-BB8A-FA1E6C5D7177 /* AppDelegate.swift in Sources */,
+				DFDF49B7-B376-4EE8-A461-6C8C730D3D0F /* AudioManager.swift in Sources */,
+				00A1871F-A0DC-4E60-BD1E-11D6095D6BE4 /* MenuBuilder.swift in Sources */,
+				0C0047F7-F806-4CD1-ACBE-48706C309651 /* LaunchAgentManager.swift in Sources */,
+				9D990FFA-01A8-4326-A5FB-331B85D787AE /* L10n.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5257B41B-4172-49FD-9879-ACF26763784B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E7F72D2F-13D7-4449-94A7-632E215956B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		930E1CB8-311C-429E-9633-2B87299F5C82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = MicKeepAlive/MicKeepAlive.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MicKeepAlive/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MicKeepAlive;
+				PRODUCT_NAME = MicKeepAlive;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9AA2AA82-C43D-4004-BE2F-B6337EAB776E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = MicKeepAlive/MicKeepAlive.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MicKeepAlive/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MicKeepAlive;
+				PRODUCT_NAME = MicKeepAlive;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B53DBAAB-6F08-4D3D-9FFB-46075059C492 /* Build configuration list for PBXProject "MicKeepAlive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5257B41B-4172-49FD-9879-ACF26763784B /* Debug */,
+				E7F72D2F-13D7-4449-94A7-632E215956B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9AED217-7BDC-4605-8D80-1412223C5DE5 /* Build configuration list for PBXNativeTarget "MicKeepAlive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				930E1CB8-311C-429E-9633-2B87299F5C82 /* Debug */,
+				9AA2AA82-C43D-4004-BE2F-B6337EAB776E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 56E40257-873F-4723-A9FB-4E35405D6F2C /* Project object */;
+}
