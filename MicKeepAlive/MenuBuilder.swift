@@ -33,8 +33,8 @@ final class MenuBuilder {
         deviceHeader.isEnabled = false
         menu.addItem(deviceHeader)
 
-        let devices = AudioManager.availableInputDevices()
-        let currentDeviceID = AudioManager.defaultInputDevice()
+        let devices = AudioDeviceUtils.availableInputDevices()
+        let currentDeviceID = AudioDeviceUtils.defaultInputDevice()
 
         if devices.isEmpty {
             let noneItem = NSMenuItem(title: L10n.pick("未检测到麦克风", "No Microphone Found"), action: nil, keyEquivalent: "")
@@ -95,7 +95,7 @@ final class MenuBuilder {
 
     @objc private func selectDevice(_ sender: NSMenuItem) {
         guard let deviceID = sender.representedObject as? AudioDeviceID else { return }
-        if !AudioManager.setDefaultInputDevice(deviceID) {
+        if !AudioDeviceUtils.setDefaultInputDevice(deviceID) {
             // 设置失败时引导用户到系统设置手动切换
             openSoundSettings(sender)
         }

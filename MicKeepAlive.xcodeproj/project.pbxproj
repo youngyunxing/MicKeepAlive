@@ -7,80 +7,118 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A65BC098-81B2-45DF-916A-F1364B1C18D8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */; };
-		978AB007-1ED3-4A94-BB8A-FA1E6C5D7177 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */; };
-		DFDF49B7-B376-4EE8-A461-6C8C730D3D0F /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */; };
-		00A1871F-A0DC-4E60-BD1E-11D6095D6BE4 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */; };
-		0C0047F7-F806-4CD1-ACBE-48706C309651 /* LaunchAgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */; };
-		9D990FFA-01A8-4326-A5FB-331B85D787AE /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */; };
-		29ECDC5B-A225-4F5E-AE71-C42A91A52031 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */; };
-		EB41959A-78D1-46BE-B273-CC55E076DCBF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */; };
+		E4719294-EE78-4BBA-A9B4-B161C2C2A4BA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F47D880-E1FD-4192-818F-F2BCC3D9B0DD /* main.swift */; };
+		22685CD9-5DD9-455A-A831-941AEB065B64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B4C2-2292-4163-93EE-3F502DDD78D4 /* AppDelegate.swift */; };
+		4AF2AF0E-533D-4DAA-85E9-F516FD9FB848 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C934BCD0-F3C0-4FC9-9D70-876CA89DE3D1 /* AudioManager.swift */; };
+		355E05ED-DDC1-4155-8B21-8E1685FD08A7 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4CAA5-6E28-47EB-AA2C-A01344D026E7 /* MenuBuilder.swift */; };
+		B1FDF6AD-2F7A-49E3-AEF2-7F045525FC59 /* LaunchAgentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9872CA-B651-48D0-9546-4AF5F7102A69 /* LaunchAgentManager.swift */; };
+		9D8CC6D4-ED1C-42DB-850B-54DCAA3A9D5A /* L10n.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC2649C-F99F-4EA3-A711-BA106DE775C9 /* L10n.swift */; };
+		46805CBF-2FB7-40FF-A6EE-3139F02452FA /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */; };
+		7E0E4479-47E8-4734-92BC-425A644C1262 /* AudioDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */; };
+		BB292C93-3C19-498F-B91C-6CA4B9DD169C /* MicKeepAliveConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */; };
+		3BF5AD3D-B5A5-46E0-B8AB-BEA9B3B411C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D8FCC7-901A-499B-8D76-7ABAD7EA4987 /* AVFoundation.framework */; };
+		F4FAD4B2-0768-46C9-8F20-7D5FA070D1B3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53C6689-9CBB-4BD0-B17F-5247091A8190 /* CoreAudio.framework */; };
+		17B4A96C-CAED-4524-8774-C0AB9AC274C6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC801B3-5EA8-442D-9E85-5A4EEC06E04A /* main.swift */; };
+		67C5F6EB-A79D-4770-A823-D49BE3FDE08C /* CLICommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968322F8-05EA-457B-8991-1CBD2CA83419 /* CLICommands.swift */; };
+		D8AF3DDB-1ABE-481A-AD0B-38F7A86735C2 /* AudioDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */; };
+		3E98E2AC-36ED-459B-8360-99F68CE0C1AC /* MicKeepAliveConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */; };
+		0F64A344-69C9-4F3D-A50A-902CED7A95A5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D8FCC7-901A-499B-8D76-7ABAD7EA4987 /* AVFoundation.framework */; };
+		423E4907-14D5-43FC-B797-FF72C00E937F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53C6689-9CBB-4BD0-B17F-5247091A8190 /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicKeepAlive.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
-		6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAgentManager.swift; sourceTree = "<group>"; };
-		E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
-		BECC0A4C-3A73-4B99-B25B-D7BBFEA2BA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5CC9441B-F201-41EC-AB38-55FCAA26D9ED /* MicKeepAlive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MicKeepAlive.entitlements; sourceTree = "<group>"; };
-		0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		2493E14F-6E3D-4E31-BEFF-ACA60CA9DACA /* MicKeepAlive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicKeepAlive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7FC23DF-9C5C-4856-9858-8A87688B55C9 /* mkctl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mkctl; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F47D880-E1FD-4192-818F-F2BCC3D9B0DD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CE37B4C2-2292-4163-93EE-3F502DDD78D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C934BCD0-F3C0-4FC9-9D70-876CA89DE3D1 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		D5F4CAA5-6E28-47EB-AA2C-A01344D026E7 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
+		7B9872CA-B651-48D0-9546-4AF5F7102A69 /* LaunchAgentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAgentManager.swift; sourceTree = "<group>"; };
+		7FC2649C-F99F-4EA3-A711-BA106DE775C9 /* L10n.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
+		A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceUtils.swift; sourceTree = "<group>"; };
+		BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicKeepAliveConstants.swift; sourceTree = "<group>"; };
+		5F03969E-29B1-4DE6-BE7A-D4C90310AC84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D569EA41-6851-4508-B7AD-B2CFAA78D5A4 /* MicKeepAlive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MicKeepAlive.entitlements; sourceTree = "<group>"; };
+		7DC801B3-5EA8-442D-9E85-5A4EEC06E04A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		968322F8-05EA-457B-8991-1CBD2CA83419 /* CLICommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLICommands.swift; sourceTree = "<group>"; };
+		90D8FCC7-901A-499B-8D76-7ABAD7EA4987 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E53C6689-9CBB-4BD0-B17F-5247091A8190 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5F131E4E-623A-4DE2-8EBA-0D337A1C1E75 /* Frameworks */ = {
+		5DECA92B-616F-4BF4-9020-4A4751FEF342 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29ECDC5B-A225-4F5E-AE71-C42A91A52031 /* AVFoundation.framework in Frameworks */,
-				EB41959A-78D1-46BE-B273-CC55E076DCBF /* CoreAudio.framework in Frameworks */,
+				3BF5AD3D-B5A5-46E0-B8AB-BEA9B3B411C5 /* AVFoundation.framework in Frameworks */,
+				F4FAD4B2-0768-46C9-8F20-7D5FA070D1B3 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		579BD8F9-8E48-4B81-B2C5-ABEF8DFDF5A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F64A344-69C9-4F3D-A50A-902CED7A95A5 /* AVFoundation.framework in Frameworks */,
+				423E4907-14D5-43FC-B797-FF72C00E937F /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FE7AE3DD-21BA-4BBA-ACAE-F5443BD51C66 /* MicKeepAlive */ = {
+		6F0ECF07-2ED4-4CFA-A6C8-B5B18C47AE1A /* MicKeepAlive */ = {
 			isa = PBXGroup;
 			children = (
-				8634A0C9-A419-42F1-8519-00DBDC578E38 /* MicKeepAlive */,
-				347D62F0-A519-4A90-AE3E-7399C66E6620 /* Frameworks */,
-				D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */,
+				672CEA5C-825D-4458-9025-D55D8172E069 /* MicKeepAlive */,
+				6DE08338-E604-4468-8298-E8866136F3EB /* mkctl */,
+				EC8EB569-1F29-4CF2-A6BD-0290D0F61CEA /* Frameworks */,
+				FCD17575-9BFC-4DEE-9F16-FDB7CF99E8EC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */ = {
+		FCD17575-9BFC-4DEE-9F16-FDB7CF99E8EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */,
+				2493E14F-6E3D-4E31-BEFF-ACA60CA9DACA /* MicKeepAlive.app */,
+				C7FC23DF-9C5C-4856-9858-8A87688B55C9 /* mkctl */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8634A0C9-A419-42F1-8519-00DBDC578E38 /* MicKeepAlive */ = {
+		672CEA5C-825D-4458-9025-D55D8172E069 /* MicKeepAlive */ = {
 			isa = PBXGroup;
 			children = (
-				B4F00297-A79C-442D-AC7A-920D58BD41DB /* main.swift */,
-				688C558F-4F65-441A-914A-138E852F7398 /* AppDelegate.swift */,
-				48BDC7FC-EE5E-4B98-86AC-15FB60A124AE /* AudioManager.swift */,
-				B06FEA4E-87DC-4B65-A756-177337D934C8 /* MenuBuilder.swift */,
-				6C90DBC3-8F37-4F95-AED4-AC2147C9F869 /* LaunchAgentManager.swift */,
-				E95E9180-D108-4D67-BDAC-2F5650C11F0B /* L10n.swift */,
-				BECC0A4C-3A73-4B99-B25B-D7BBFEA2BA2D /* Info.plist */,
-				5CC9441B-F201-41EC-AB38-55FCAA26D9ED /* MicKeepAlive.entitlements */,
+				0F47D880-E1FD-4192-818F-F2BCC3D9B0DD /* main.swift */,
+				CE37B4C2-2292-4163-93EE-3F502DDD78D4 /* AppDelegate.swift */,
+				C934BCD0-F3C0-4FC9-9D70-876CA89DE3D1 /* AudioManager.swift */,
+				D5F4CAA5-6E28-47EB-AA2C-A01344D026E7 /* MenuBuilder.swift */,
+				7B9872CA-B651-48D0-9546-4AF5F7102A69 /* LaunchAgentManager.swift */,
+				7FC2649C-F99F-4EA3-A711-BA106DE775C9 /* L10n.swift */,
+				13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */,
+				A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */,
+				BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */,
+				5F03969E-29B1-4DE6-BE7A-D4C90310AC84 /* Info.plist */,
+				D569EA41-6851-4508-B7AD-B2CFAA78D5A4 /* MicKeepAlive.entitlements */,
 			);
 			path = MicKeepAlive;
 			sourceTree = "<group>";
 		};
-		347D62F0-A519-4A90-AE3E-7399C66E6620 /* Frameworks */ = {
+		6DE08338-E604-4468-8298-E8866136F3EB /* mkctl */ = {
 			isa = PBXGroup;
 			children = (
-				0D081FCD-90E1-4A62-AB26-2727916C38EB /* AVFoundation.framework */,
-				FA45A5A9-BF2B-42E9-953E-77867179620D /* CoreAudio.framework */,
+				7DC801B3-5EA8-442D-9E85-5A4EEC06E04A /* main.swift */,
+				968322F8-05EA-457B-8991-1CBD2CA83419 /* CLICommands.swift */,
+			);
+			path = mkctl;
+			sourceTree = "<group>";
+		};
+		EC8EB569-1F29-4CF2-A6BD-0290D0F61CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90D8FCC7-901A-499B-8D76-7ABAD7EA4987 /* AVFoundation.framework */,
+				E53C6689-9CBB-4BD0-B17F-5247091A8190 /* CoreAudio.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -88,12 +126,12 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C2F429B6-5F79-40CA-B32B-43AD04949AB3 /* MicKeepAlive */ = {
+		25B551FF-BFFE-47A8-8060-77343C3B3BE6 /* MicKeepAlive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9AED217-7BDC-4605-8D80-1412223C5DE5 /* Build configuration list for PBXNativeTarget "MicKeepAlive" */;
+			buildConfigurationList = 8BB0C522-0BBB-449C-A9C9-E7C30131FF2A /* Build configuration list for PBXNativeTarget "MicKeepAlive" */;
 			buildPhases = (
-				4BFF2BC8-740F-4828-8154-B0E6C3310EF7 /* Sources */,
-				5F131E4E-623A-4DE2-8EBA-0D337A1C1E75 /* Frameworks */,
+				828FE717-BFFA-478F-8C65-24D43299204E /* Sources */,
+				5DECA92B-616F-4BF4-9020-4A4751FEF342 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -101,15 +139,31 @@
 			);
 			name = MicKeepAlive;
 			productName = MicKeepAlive;
-			productReference = DF2888D7-10E5-43D4-B396-21196D987CFD /* MicKeepAlive.app */;
+			productReference = 2493E14F-6E3D-4E31-BEFF-ACA60CA9DACA /* MicKeepAlive.app */;
 			productType = "com.apple.product-type.application";
+		};
+		76109502-381C-4762-B032-EA0284066AF5 /* mkctl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D9D9A7-076F-4DFD-86F1-29C353EFAC18 /* Build configuration list for PBXNativeTarget "mkctl" */;
+			buildPhases = (
+				4A5748CC-4689-43D4-A5A1-6CDAF2A4A866 /* Sources */,
+				579BD8F9-8E48-4B81-B2C5-ABEF8DFDF5A3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mkctl;
+			productName = mkctl;
+			productReference = C7FC23DF-9C5C-4856-9858-8A87688B55C9 /* mkctl */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		56E40257-873F-4723-A9FB-4E35405D6F2C /* Project object */ = {
+		BF3F3129-2413-4A9A-A209-5B6975931F7E /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = B53DBAAB-6F08-4D3D-9FFB-46075059C492 /* Build configuration list for PBXProject "MicKeepAlive" */;
+			buildConfigurationList = 54E513CF-F05F-4724-8799-EB4DAFAEA3EF /* Build configuration list for PBXProject "MicKeepAlive" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -117,34 +171,49 @@
 				en,
 				Base,
 			);
-			mainGroup = FE7AE3DD-21BA-4BBA-ACAE-F5443BD51C66;
-			productRefGroup = D5AC9CC4-FEBC-4964-A937-E82307B1B590 /* Products */;
+			mainGroup = 6F0ECF07-2ED4-4CFA-A6C8-B5B18C47AE1A;
+			productRefGroup = FCD17575-9BFC-4DEE-9F16-FDB7CF99E8EC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C2F429B6-5F79-40CA-B32B-43AD04949AB3 /* MicKeepAlive */,
+				25B551FF-BFFE-47A8-8060-77343C3B3BE6 /* MicKeepAlive */,
+				76109502-381C-4762-B032-EA0284066AF5 /* mkctl */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4BFF2BC8-740F-4828-8154-B0E6C3310EF7 /* Sources */ = {
+		828FE717-BFFA-478F-8C65-24D43299204E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A65BC098-81B2-45DF-916A-F1364B1C18D8 /* main.swift in Sources */,
-				978AB007-1ED3-4A94-BB8A-FA1E6C5D7177 /* AppDelegate.swift in Sources */,
-				DFDF49B7-B376-4EE8-A461-6C8C730D3D0F /* AudioManager.swift in Sources */,
-				00A1871F-A0DC-4E60-BD1E-11D6095D6BE4 /* MenuBuilder.swift in Sources */,
-				0C0047F7-F806-4CD1-ACBE-48706C309651 /* LaunchAgentManager.swift in Sources */,
-				9D990FFA-01A8-4326-A5FB-331B85D787AE /* L10n.swift in Sources */,
+				E4719294-EE78-4BBA-A9B4-B161C2C2A4BA /* main.swift in Sources */,
+				22685CD9-5DD9-455A-A831-941AEB065B64 /* AppDelegate.swift in Sources */,
+				4AF2AF0E-533D-4DAA-85E9-F516FD9FB848 /* AudioManager.swift in Sources */,
+				355E05ED-DDC1-4155-8B21-8E1685FD08A7 /* MenuBuilder.swift in Sources */,
+				B1FDF6AD-2F7A-49E3-AEF2-7F045525FC59 /* LaunchAgentManager.swift in Sources */,
+				9D8CC6D4-ED1C-42DB-850B-54DCAA3A9D5A /* L10n.swift in Sources */,
+				46805CBF-2FB7-40FF-A6EE-3139F02452FA /* StateStore.swift in Sources */,
+				7E0E4479-47E8-4734-92BC-425A644C1262 /* AudioDeviceUtils.swift in Sources */,
+				BB292C93-3C19-498F-B91C-6CA4B9DD169C /* MicKeepAliveConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4A5748CC-4689-43D4-A5A1-6CDAF2A4A866 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17B4A96C-CAED-4524-8774-C0AB9AC274C6 /* main.swift in Sources */,
+				67C5F6EB-A79D-4770-A823-D49BE3FDE08C /* CLICommands.swift in Sources */,
+				D8AF3DDB-1ABE-481A-AD0B-38F7A86735C2 /* AudioDeviceUtils.swift in Sources */,
+				3E98E2AC-36ED-459B-8360-99F68CE0C1AC /* MicKeepAliveConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5257B41B-4172-49FD-9879-ACF26763784B /* Debug */ = {
+		0A59E6EA-1442-42D9-AFC8-810C58D1001F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -178,7 +247,7 @@
 			};
 			name = Debug;
 		};
-		E7F72D2F-13D7-4449-94A7-632E215956B2 /* Release */ = {
+		436E0341-0E72-41C6-9A2C-CE6DEE30A22D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -206,7 +275,7 @@
 			};
 			name = Release;
 		};
-		930E1CB8-311C-429E-9633-2B87299F5C82 /* Debug */ = {
+		73F170DF-0E2D-4B45-8CC5-8D30EC449610 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
@@ -232,7 +301,7 @@
 			};
 			name = Debug;
 		};
-		9AA2AA82-C43D-4004-BE2F-B6337EAB776E /* Release */ = {
+		60874991-347E-40E6-90C6-7A309E110D8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "";
@@ -258,28 +327,77 @@
 			};
 			name = Release;
 		};
+		C10EB3AB-3BC9-4D8C-AC1F-7FDB095C1AEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MicKeepAlive.mkctl;
+				PRODUCT_NAME = mkctl;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		98AC6615-B722-4C1D-8058-611D9AE9E21C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MicKeepAlive.mkctl;
+				PRODUCT_NAME = mkctl;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B53DBAAB-6F08-4D3D-9FFB-46075059C492 /* Build configuration list for PBXProject "MicKeepAlive" */ = {
+		54E513CF-F05F-4724-8799-EB4DAFAEA3EF /* Build configuration list for PBXProject "MicKeepAlive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5257B41B-4172-49FD-9879-ACF26763784B /* Debug */,
-				E7F72D2F-13D7-4449-94A7-632E215956B2 /* Release */,
+				0A59E6EA-1442-42D9-AFC8-810C58D1001F /* Debug */,
+				436E0341-0E72-41C6-9A2C-CE6DEE30A22D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9AED217-7BDC-4605-8D80-1412223C5DE5 /* Build configuration list for PBXNativeTarget "MicKeepAlive" */ = {
+		8BB0C522-0BBB-449C-A9C9-E7C30131FF2A /* Build configuration list for PBXNativeTarget "MicKeepAlive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				930E1CB8-311C-429E-9633-2B87299F5C82 /* Debug */,
-				9AA2AA82-C43D-4004-BE2F-B6337EAB776E /* Release */,
+				73F170DF-0E2D-4B45-8CC5-8D30EC449610 /* Debug */,
+				60874991-347E-40E6-90C6-7A309E110D8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D9D9A7-076F-4DFD-86F1-29C353EFAC18 /* Build configuration list for PBXNativeTarget "mkctl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C10EB3AB-3BC9-4D8C-AC1F-7FDB095C1AEC /* Debug */,
+				98AC6615-B722-4C1D-8058-611D9AE9E21C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 56E40257-873F-4723-A9FB-4E35405D6F2C /* Project object */;
+	rootObject = BF3F3129-2413-4A9A-A209-5B6975931F7E /* Project object */;
 }
