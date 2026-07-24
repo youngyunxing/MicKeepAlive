@@ -83,7 +83,7 @@ mkctl launch-at-login off # 关闭开机自启
 ## 构建与安装
 
 ```bash
-cd /Users/apple/Downloads/MyCode/MicKeepAlive
+cd /path/to/MicKeepAlive
 rm -rf /tmp/mk_derived
 
 # 构建 App
