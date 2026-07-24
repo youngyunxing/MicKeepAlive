@@ -11,6 +11,9 @@ build/
 # macOS
 .DS_Store
 
+# Release packages
+*.zip
+
 # Swift Package Manager
 .build/
 Package.resolved
