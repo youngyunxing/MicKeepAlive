@@ -62,7 +62,7 @@ enum AudioDeviceUtils {
         )
         var name: Unmanaged<CFString>?
         var size = UInt32(MemoryLayout<Unmanaged<CFString>>.size)
-        guard AudioObjectGetPropertyData(deviceID, &address, 0, nil, &size, &name) == noErr, let cfName = name?.takeRetainedValue() else { return nil }
+        guard AudioObjectGetPropertyData(deviceID, &address, 0, nil, &size, &name) == noErr, let cfName = name?.takeUnretainedValue() else { return nil }
         return cfName as String
     }
 

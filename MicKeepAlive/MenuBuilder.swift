@@ -18,10 +18,10 @@ final class MenuBuilder {
 
         menu.addItem(NSMenuItem.separator())
 
-        // 停止 / 恢复
+        // 停止 / 开启
         let toggleTitle = audioManager.isKeepingAlive
             ? L10n.pick("停止保活", "Stop Keep-Alive")
-            : L10n.pick("恢复保活", "Resume Keep-Alive")
+            : L10n.pick("开启保活", "Start Keep-Alive")
         let toggleItem = NSMenuItem(title: toggleTitle, action: #selector(toggleKeepAlive(_:)), keyEquivalent: "")
         toggleItem.target = self
         menu.addItem(toggleItem)
@@ -91,6 +91,10 @@ final class MenuBuilder {
 
     @objc private func toggleKeepAlive(_ sender: NSMenuItem) {
         audioManager.toggle()
+        // 点完后立即刷新菜单项文案，避免菜单还开着时显示旧文字
+        sender.title = audioManager.isKeepingAlive
+            ? L10n.pick("停止保活", "Stop Keep-Alive")
+            : L10n.pick("开启保活", "Start Keep-Alive")
     }
 
     @objc private func selectDevice(_ sender: NSMenuItem) {
