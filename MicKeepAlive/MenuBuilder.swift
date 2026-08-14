@@ -18,10 +18,11 @@ final class MenuBuilder {
 
         menu.addItem(NSMenuItem.separator())
 
-        // 停止 / 开启
-        let toggleTitle = audioManager.isKeepingAlive
-            ? L10n.pick("停止保活", "Stop Keep-Alive")
-            : L10n.pick("开启保活", "Start Keep-Alive")
+        // 停止 / 开启。用 isPaused 判断（isRunning 在停止后仍为 true，
+        // 因为它指"会话实例是否挂在 capture 上"，不代表用户想保活）
+        let toggleTitle = audioManager.isPaused
+            ? L10n.pick("开启保活", "Start Keep-Alive")
+            : L10n.pick("停止保活", "Stop Keep-Alive")
         let toggleItem = NSMenuItem(title: toggleTitle, action: #selector(toggleKeepAlive(_:)), keyEquivalent: "")
         toggleItem.target = self
         menu.addItem(toggleItem)
@@ -92,9 +93,9 @@ final class MenuBuilder {
     @objc private func toggleKeepAlive(_ sender: NSMenuItem) {
         audioManager.toggle()
         // 点完后立即刷新菜单项文案，避免菜单还开着时显示旧文字
-        sender.title = audioManager.isKeepingAlive
-            ? L10n.pick("停止保活", "Stop Keep-Alive")
-            : L10n.pick("开启保活", "Start Keep-Alive")
+        sender.title = audioManager.isPaused
+            ? L10n.pick("开启保活", "Start Keep-Alive")
+            : L10n.pick("停止保活", "Stop Keep-Alive")
     }
 
     @objc private func selectDevice(_ sender: NSMenuItem) {
