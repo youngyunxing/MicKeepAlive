@@ -42,6 +42,16 @@ final class AudioManager: NSObject {
     private var lastChannelCount: UInt32?
     private(set) var isPaused = false
     private(set) var isRunning = false
+    /// 最近一次计算的电平（探针验证对比用，主线程更新）
+    private var lastLevel: Float = 0
+    /// 最近一次设备事件（断开/连接）时间，用于探针验证窗口
+    private var lastDeviceEventTime: Date?
+    /// 探针验证窗口定时器（设备事件后每 30 秒验证一次）
+    private var probeTimer: Timer?
+    /// 连续探针确认失败次数（安全阀）
+    private var consecutiveProbeFailures = 0
+    /// 探针验证暂停（连续失败后，等设备事件或手动操作）
+    private var probePaused = false
 
     /// 音频数据回调队列（避免阻塞主线程）
     private let sampleBufferQueue = DispatchQueue(label: "com.example.MicKeepAlive.audioOutput")
@@ -57,6 +67,18 @@ final class AudioManager: NSObject {
     private let levelUpdateTimeout: TimeInterval = 10
     /// 连续启动失败次数上限，失败太多次后不再自动重试，避免无限循环
     private let maxConsecutiveFailures = 5
+    /// 探针验证窗口时长：设备事件后 HAL 需要时间稳定，窗口内持续重试
+    private let probeWindowDuration: TimeInterval = 5 * 60
+    /// 探针验证间隔
+    private let probeInterval: TimeInterval = 30
+    /// 判定"有声音"的电平阈值（0~1 归一化，约 -57dB）。
+    /// 高于麦克风底噪（安静房间约 0.02~0.04），低于人声（约 0.1+），
+    /// 避免把底噪误判为"有声音"导致误触发重建
+    private let soundThreshold: Float = 0.05
+    /// 连续探针确认失败上限，超过后暂停自动恢复
+    private let maxProbeFailures = 3
+    /// 探针子进程超时（秒）
+    private static let probeTimeout: TimeInterval = 10
 
     init(delegate: AudioManagerDelegate?) {
         self.delegate = delegate
@@ -99,6 +121,7 @@ final class AudioManager: NSObject {
         stopCaptureSession()
         isRunning = false
         stopHealthCheckTimer()
+        stopProbeTimer()
         StateStore.shared.save(keepingAlive: false)
         record("停止保活")
         delegate?.audioManager(self, didChangeState: .paused)
@@ -216,6 +239,7 @@ final class AudioManager: NSObject {
         // 但保留此清理以便将来复用或重建时无副作用。
         stopCaptureSession()
         stopHealthCheckTimer()
+        stopProbeTimer()
     }
 
     private func scheduleRetryRebuild() {
@@ -241,6 +265,7 @@ final class AudioManager: NSObject {
             let error = note.userInfo?[AVCaptureSessionErrorKey] as? Error
             self.record("保活会话运行时错误: \(error.map { $0.localizedDescription } ?? "unknown")", isError: true)
             self.scheduleRetryRebuild()
+            self.startProbeVerificationWindow()
         }
         deviceConnectedObserver = nc.addObserver(
             forName: .AVCaptureDeviceWasConnected,
@@ -248,6 +273,7 @@ final class AudioManager: NSObject {
             queue: .main
         ) { [weak self] _ in
             self?.scheduleRetryRebuild()
+            self?.startProbeVerificationWindow()
         }
         deviceDisconnectedObserver = nc.addObserver(
             forName: .AVCaptureDeviceWasDisconnected,
@@ -259,6 +285,7 @@ final class AudioManager: NSObject {
                 self.record("输入设备断开: \(device.localizedName)", isError: true)
             }
             self.scheduleRetryRebuild()
+            self.startProbeVerificationWindow()
         }
     }
 
@@ -372,62 +399,105 @@ final class AudioManager: NSObject {
         }
     }
 
-    // MARK: - 电平计算
+    // MARK: - 探针验证（设备事件后确认重建是否真的恢复）
 
-    /// 从 AVCaptureAudioDataOutput 回调的 CMSampleBuffer 计算 RMS 归一化电平（0~1）
-    static func calculateLevel(from sampleBuffer: CMSampleBuffer) -> Float {
-        // 先询问需要多大的 AudioBufferList
-        var bufferListSize = 0
-        var blockBuffer: CMBlockBuffer?
-        guard CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-            sampleBuffer,
-            bufferListSizeNeededOut: &bufferListSize,
-            bufferListOut: nil,
-            bufferListSize: 0,
-            blockBufferAllocator: nil,
-            blockBufferMemoryAllocator: nil,
-            flags: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment,
-            blockBufferOut: &blockBuffer) == noErr,
-            bufferListSize > 0 else {
-            return 0
+    /// 设备事件后启动探针验证窗口：每 30 秒用全新进程采集 2 秒声音，
+    /// 与自身电平对比，确认重建是否真的恢复。
+    /// 背景：蓝牙麦重连后 HAL 需要时间稳定，第一次重建可能拿到静音 IOProc
+    /// （会话自认为运行中但听不到声音），此时只有"新进程能听到、本应用听不到"
+    /// 才能确诊失明；房间安静时无法验证，则按窗口有界重试兜底。
+    private func startProbeVerificationWindow() {
+        guard !isPaused else { return }
+        let windowStart = Date()
+        lastDeviceEventTime = windowStart
+        consecutiveProbeFailures = 0
+        probePaused = false
+        stopProbeTimer()
+        probeTimer = Timer.scheduledTimer(withTimeInterval: probeInterval, repeats: true) { [weak self] _ in
+            self?.performProbeCheck()
         }
-
-        // 分配并填充 AudioBufferList
-        let bufferList = UnsafeMutablePointer<AudioBufferList>.allocate(capacity: bufferListSize)
-        defer { bufferList.deallocate() }
-        guard CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-            sampleBuffer,
-            bufferListSizeNeededOut: nil,
-            bufferListOut: bufferList,
-            bufferListSize: bufferListSize,
-            blockBufferAllocator: nil,
-            blockBufferMemoryAllocator: nil,
-            flags: kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment,
-            blockBufferOut: &blockBuffer) == noErr else {
-            return 0
+        // 窗口到期自动停止（仅当窗口仍是当前窗口时，避免新窗口被旧回调误停）
+        DispatchQueue.main.asyncAfter(deadline: .now() + probeWindowDuration) { [weak self] in
+            guard let self = self, self.lastDeviceEventTime == windowStart else { return }
+            self.stopProbeTimer()
+            self.record("探针验证窗口结束（5 分钟），未确认恢复")
         }
+    }
 
-        // AVCaptureAudioDataOutput 通常输出非交织的 Float32，按 Float 读取
-        let abl = UnsafeMutableAudioBufferListPointer(bufferList)
-        var sum: Float = 0
-        var totalSamples = 0
-        for buffer in abl {
-            guard let data = buffer.mData else { continue }
-            let sampleCount = Int(buffer.mDataByteSize) / MemoryLayout<Float>.size
-            guard sampleCount > 0 else { continue }
-            let samples = data.assumingMemoryBound(to: Float.self)
-            for i in 0..<sampleCount {
-                let sample = samples[i]
-                sum += sample * sample
+    private func stopProbeTimer() {
+        probeTimer?.invalidate()
+        probeTimer = nil
+    }
+
+    private func performProbeCheck() {
+        guard !isPaused, !probePaused else { return }
+        let probePath = Bundle.main.bundleURL.appendingPathComponent("Contents/MacOS/mkctl").path
+        // 探针采集约 2 秒，放后台队列避免阻塞主线程
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            let probeLevel = Self.runProbe(executablePath: probePath)
+            DispatchQueue.main.async {
+                self?.handleProbeResult(probeLevel)
             }
-            totalSamples += sampleCount
         }
-        guard totalSamples > 0 else { return 0 }
+    }
 
-        let rms = sqrt(sum / Float(totalSamples))
-        let db = 20 * log10(max(rms, 0.00001))
-        let normalized = (db + 60) / 60
-        return max(0, min(1, normalized))
+    /// 运行 mkctl probe：全新进程（新 CoreAudio 连接）采集 2 秒默认输入设备声音，
+    /// 返回归一化电平（0~1）；失败返回 nil。
+    private static func runProbe(executablePath: String) -> Float? {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: executablePath)
+        process.arguments = ["probe"]
+        let pipe = Pipe()
+        process.standardOutput = pipe
+        process.standardError = Pipe()
+        do {
+            try process.run()
+        } catch {
+            return nil
+        }
+        let semaphore = DispatchSemaphore(value: 0)
+        process.terminationHandler = { _ in semaphore.signal() }
+        if semaphore.wait(timeout: .now() + probeTimeout) == .timedOut {
+            process.terminate()
+            return nil
+        }
+        guard let output = String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8),
+              let line = output.split(separator: "\n").first(where: { $0.hasPrefix("level=") }),
+              let value = Float(line.dropFirst("level=".count)) else {
+            return nil
+        }
+        return value
+    }
+
+    private func handleProbeResult(_ probeLevel: Float?) {
+        guard !isPaused, !probePaused else { return }
+        guard let probeLevel = probeLevel else {
+            record("探针执行失败，跳过本轮验证", isError: true)
+            return
+        }
+        let appHears = lastLevel > soundThreshold
+        let probeHears = probeLevel > soundThreshold
+
+        if probeHears {
+            if appHears {
+                // 探针和 app 都听到声音：重建确认成功
+                record("探针验证成功：probe=\(String(format: "%.3f", probeLevel)) app=\(String(format: "%.3f", lastLevel))，停止重试")
+                stopProbeTimer()
+            } else {
+                // 探针听到声音但 app 静音：确诊失明，重建
+                consecutiveProbeFailures += 1
+                record("探针确诊失明：probe=\(String(format: "%.3f", probeLevel)) app=\(String(format: "%.3f", lastLevel))，重建[\(consecutiveProbeFailures)]", isError: true)
+                if consecutiveProbeFailures >= maxProbeFailures {
+                    probePaused = true
+                    stopProbeTimer()
+                    record("连续 \(maxProbeFailures) 次探针重建未恢复，暂停自动恢复，等待设备事件或手动操作", isError: true)
+                    delegate?.audioManager(self, didChangeState: .error("麦克风多次重建未恢复，请手动重启保活"))
+                    return
+                }
+                rebuildAndStartSession(reason: "probeRetry")
+            }
+        }
+        // 探针静音：房间安静无法验证，继续窗口（有界重试兜底）
     }
 
     /// 检测蓝牙重协商导致的采样率/声道漂移（常是"突然不能用"的前兆）。首次仅记录基线不刷屏。
@@ -454,11 +524,13 @@ extension AudioManager: AVCaptureAudioDataOutputSampleBufferDelegate {
         guard !isPaused else { return }
 
         detectFormatChange(in: sampleBuffer)
-        let level = AudioManager.calculateLevel(from: sampleBuffer)
+        let level = AudioLevel.calculate(from: sampleBuffer)
         DispatchQueue.main.async {
             let now = Date()
             // 记录最后一次收到音频数据的时间（主线程操作，避免竞争）
             self.lastLevelUpdateTime = now
+            // 记录最近一次电平（探针验证对比用）
+            self.lastLevel = level
 
             // 定期采样：电平 + 默认设备，并检测默认设备是否被切换
             if now.timeIntervalSince(self.lastStatusLogTime) >= self.statusLogInterval {

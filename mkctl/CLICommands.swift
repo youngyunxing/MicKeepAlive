@@ -1,6 +1,7 @@
 import Foundation
 import CoreAudio
 import CoreFoundation
+import AVFoundation
 
 enum CLIError: Error, LocalizedError {
     case unknownCommand
@@ -32,6 +33,7 @@ struct CLICommands {
         case "start": try start()
         case "stop": try stop()
         case "toggle": try toggle()
+        case "probe": try probe()
         case "set-device": try setDevice(args: Array(args.dropFirst()))
         case "launch-at-login": try launchAtLogin(args: Array(args.dropFirst()))
         case "help", "-h", "--help": printUsage()
@@ -46,6 +48,7 @@ struct CLICommands {
         用法:
           mkctl status              查看运行状态与当前默认麦克风
           mkctl list                列出可用输入麦克风
+          mkctl probe               采集 2 秒默认麦克风声音并输出电平（供 App 探针验证）
           mkctl start               启动/恢复保活
           mkctl stop                停止保活
           mkctl toggle              切换保活状态
@@ -96,6 +99,13 @@ struct CLICommands {
 
     func toggle() throws {
         sendCommand(.toggle)
+    }
+
+    /// 探针：全新进程采集 2 秒默认输入设备声音，输出归一化电平（0~1）。
+    /// 供 App 在设备事件后验证重建是否真的恢复（新进程 = 新 CoreAudio 连接，能看到真实设备）。
+    func probe() throws {
+        let level = AudioProbe.captureLevel(duration: 2.0)
+        print("level=\(String(format: "%.3f", level))")
     }
 
     func setDevice(args: [String]) throws {
@@ -201,5 +211,56 @@ struct CLICommands {
         } catch {
             return false
         }
+    }
+}
+
+// MARK: - 探针采集
+
+/// 用 AVCaptureSession 采集默认输入设备声音并计算电平。
+/// 与 App 的保活会话同机制（多客户端共享，不独占麦克风），电平算法与 App 共用 AudioLevel。
+private enum AudioProbe {
+    static func captureLevel(duration: TimeInterval) -> Float {
+        // 未授权时不弹窗、直接返回 0（App 侧会按"无法验证"处理）
+        guard AVCaptureDevice.authorizationStatus(for: .audio) == .authorized else { return 0 }
+
+        let session = AVCaptureSession()
+        session.sessionPreset = .low
+        guard let device = AVCaptureDevice.default(for: .audio),
+              let input = try? AVCaptureDeviceInput(device: device),
+              session.canAddInput(input) else {
+            return 0
+        }
+        session.addInput(input)
+
+        let output = AVCaptureAudioDataOutput()
+        let collector = SampleCollector()
+        output.setSampleBufferDelegate(collector, queue: DispatchQueue(label: "com.example.MicKeepAlive.probe"))
+        guard session.canAddOutput(output) else { return 0 }
+        session.addOutput(output)
+
+        session.startRunning()
+        Thread.sleep(forTimeInterval: duration)
+        session.stopRunning()
+        return collector.level
+    }
+}
+
+private final class SampleCollector: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
+    private let lock = NSLock()
+    private var sum: Float = 0
+    private var count = 0
+
+    var level: Float {
+        lock.lock(); defer { lock.unlock() }
+        guard count > 0 else { return 0 }
+        return sum / Float(count)
+    }
+
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let l = AudioLevel.calculate(from: sampleBuffer)
+        lock.lock()
+        sum += l
+        count += 1
+        lock.unlock()
     }
 }

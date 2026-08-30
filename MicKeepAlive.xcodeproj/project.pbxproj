@@ -16,6 +16,8 @@
 		46805CBF-2FB7-40FF-A6EE-3139F02452FA /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */; };
 		7E0E4479-47E8-4734-92BC-425A644C1262 /* AudioDeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */; };
 		BB292C93-3C19-498F-B91C-6CA4B9DD169C /* MicKeepAliveConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */; };
+		AA11BB22CC33DD44EE55FF01 /* AudioLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF00 /* AudioLevel.swift */; };
+		AA11BB22CC33DD44EE55FF02 /* AudioLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF00 /* AudioLevel.swift */; };
 		3BF5AD3D-B5A5-46E0-B8AB-BEA9B3B411C5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D8FCC7-901A-499B-8D76-7ABAD7EA4987 /* AVFoundation.framework */; };
 		F4FAD4B2-0768-46C9-8F20-7D5FA070D1B3 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53C6689-9CBB-4BD0-B17F-5247091A8190 /* CoreAudio.framework */; };
 		17B4A96C-CAED-4524-8774-C0AB9AC274C6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC801B3-5EA8-442D-9E85-5A4EEC06E04A /* main.swift */; };
@@ -38,6 +40,7 @@
 		13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
 		A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioDeviceUtils.swift; sourceTree = "<group>"; };
 		BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicKeepAliveConstants.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF00 /* AudioLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioLevel.swift; sourceTree = "<group>"; };
 		5F03969E-29B1-4DE6-BE7A-D4C90310AC84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D569EA41-6851-4508-B7AD-B2CFAA78D5A4 /* MicKeepAlive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MicKeepAlive.entitlements; sourceTree = "<group>"; };
 		7DC801B3-5EA8-442D-9E85-5A4EEC06E04A /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 				13CF58DC-CF09-4F4D-827B-2F04297D3920 /* StateStore.swift */,
 				A57C2CEE-81E2-4218-8794-BBFB4DADD742 /* AudioDeviceUtils.swift */,
 				BA1CB93E-314E-40CB-AB6C-BEB6E1FF62D9 /* MicKeepAliveConstants.swift */,
+				AA11BB22CC33DD44EE55FF00 /* AudioLevel.swift */,
 				5F03969E-29B1-4DE6-BE7A-D4C90310AC84 /* Info.plist */,
 				D569EA41-6851-4508-B7AD-B2CFAA78D5A4 /* MicKeepAlive.entitlements */,
 			);
@@ -196,6 +200,7 @@
 				46805CBF-2FB7-40FF-A6EE-3139F02452FA /* StateStore.swift in Sources */,
 				7E0E4479-47E8-4734-92BC-425A644C1262 /* AudioDeviceUtils.swift in Sources */,
 				BB292C93-3C19-498F-B91C-6CA4B9DD169C /* MicKeepAliveConstants.swift in Sources */,
+				AA11BB22CC33DD44EE55FF01 /* AudioLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +212,7 @@
 				67C5F6EB-A79D-4770-A823-D49BE3FDE08C /* CLICommands.swift in Sources */,
 				D8AF3DDB-1ABE-481A-AD0B-38F7A86735C2 /* AudioDeviceUtils.swift in Sources */,
 				3E98E2AC-36ED-459B-8360-99F68CE0C1AC /* MicKeepAliveConstants.swift in Sources */,
+				AA11BB22CC33DD44EE55FF02 /* AudioLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
